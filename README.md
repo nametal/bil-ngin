@@ -1,4 +1,32 @@
-## How to set up
+## Notes:
+1. A loan is already pre-created with the following specs:
+* tenure: 50 weeks
+* loan amount: 5,000,000
+* annual rate (fixed): 10%
+2. For simplicty, we use memory (not DB) to store data
+```mermaid
+erDiagram
+    direction LR
+    LOAN ||--|{ BILL : contains
+    LOAN {
+        int id
+        decimal total_amount
+        decimal annual_rate
+        date created_date
+        date due_date
+    }
+    BILL {
+        int id
+        string loan_id
+        date due_date
+        decimal amount
+        enum status
+        date paid_date
+    }
+```
+
+## How to use
+(Make sure to install Java on your system)
 1. Build
 ```bash
 ./gradlew build
@@ -8,7 +36,7 @@
 java -cp build/classes/java/main com.amartha.sample.Main
 ```
 
-## How to use
+Following screen will show up:
 ```bash
 ----
 Menu
@@ -22,9 +50,10 @@ Menu
 0. exit
 Choose:
 ```
-
-Notes:
-For simplicity, a loan is already pre-created with the following specs:
-* tenure: 50 weeks
-* loan amount: 5,000,000
-* annual rate (fixed): 10%
+Choose a menu by typing 0-5 then press Enter
+### Notes:
+1. get loans: get existing loans (for now, only 1)
+2. get bills: get loan schedules for a loan
+3. get outstanding: get the total amount of unpaid bills
+4. make payment: pay on a specific date with exact amount based on pending amount on that date
+5. is delinquent: input specific date, return true if there are at least 2 unpaid bills on that date
