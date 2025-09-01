@@ -27,7 +27,7 @@ public class BillingAccessorImpl implements BillingAccessor {
 
     @Override
     public int insertBills(List<Bill> bills) {
-        Bill first = bills.getFirst();
+        Bill first = bills.get(0);
         billMap.put(first.getLoanId(), bills);
         return bills.size();
     }
