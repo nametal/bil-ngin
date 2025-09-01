@@ -26,7 +26,7 @@ erDiagram
 ```
 
 ## How to use
-(Make sure to install Java on your system)
+(Make sure to install Java on your system first)
 1. Build
 ```bash
 ./gradlew build
@@ -51,9 +51,9 @@ Menu
 Choose:
 ```
 Choose a menu by typing 0-5 then press Enter
-### Notes:
-1. get loans: get existing loans (for now, only 1)
-2. get bills: get loan schedules for a loan
-3. get outstanding: get the total amount of unpaid bills
-4. make payment: pay on a specific date with exact amount based on pending amount on that date
-5. is delinquent: input specific date, return true if there are at least 2 unpaid bills on that date
+### Menu description:
+1. **get loans**: get existing loans (for now, only 1)
+2. **get bills**: get loan schedules for a loan
+3. **get outstanding**: get the total amount of unpaid bills
+4. **make payment**: pay on a specific date with exact amount based on total pending amount on that date
+5. **is delinquent**: input specific date, return true if there are at least 2 unpaid bills on that date, otherwise false
