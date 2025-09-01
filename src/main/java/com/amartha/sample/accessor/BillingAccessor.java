@@ -8,11 +8,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface BillingAccessor {
-    void insertLoan(Loan loan);
+    int insertLoan(Loan loan);
 
-    void insertBills(List<Bill> bills);
-
-    void updateBillsToPaid(List<String> billIds, LocalDate date);
+    int insertBills(List<Bill> bills);
 
     List<Loan> getLoans();
 

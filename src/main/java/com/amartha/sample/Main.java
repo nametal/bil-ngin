@@ -1,22 +1,28 @@
 package com.amartha.sample;
 
 import com.amartha.sample.accessor.BillingAccessor;
-import com.amartha.sample.accessor.BillingAccessorInMemoryImpl;
+import com.amartha.sample.accessor.BillingAccessorImpl;
 import com.amartha.sample.model.Bill;
 import com.amartha.sample.model.CreateLoanSpec;
 import com.amartha.sample.model.IsDelinquentSpec;
+import com.amartha.sample.model.Loan;
 import com.amartha.sample.model.MakePaymentSpec;
 import com.amartha.sample.service.BillingService;
 import com.amartha.sample.service.BillingServiceImpl;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        BillingAccessor accessor = new BillingAccessorInMemoryImpl();
+        List<Loan> loans = new ArrayList<>();
+        Map<Integer, List<Bill>> billMap = new HashMap<>();
+        BillingAccessor accessor = new BillingAccessorImpl(loans, billMap);
         BillingService billingService = new BillingServiceImpl(accessor);
         Scanner scanner = new Scanner(System.in);
 
@@ -61,7 +67,7 @@ public class Main {
                     }
                     case 4 -> {
                         System.out.println("Make Payment");
-                        System.out.print("Date: ");
+                        System.out.print("Date (yyyy-MM-dd): ");
                         LocalDate date = LocalDate.parse(scanner.nextLine());
                         System.out.print("Amount: ");
                         BigDecimal amount = new BigDecimal(scanner.nextLine());
@@ -70,7 +76,7 @@ public class Main {
                     }
                     case 5 -> {
                         System.out.println("Is Delinquent");
-                        System.out.print("Date: ");
+                        System.out.print("Date (yyyy-MM-dd): ");
                         LocalDate date = LocalDate.parse(scanner.nextLine());
                         System.out.println("Delinquent -> " + billingService.isDelinquent(new IsDelinquentSpec(loanID, date)));
                     }
