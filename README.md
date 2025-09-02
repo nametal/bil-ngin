@@ -3,7 +3,7 @@
 * tenure: 50 weeks
 * loan amount: 5,000,000
 * annual rate (fixed): 10%
-2. For simplicty, we use memory (not DB) to store data
+2. For simplicity, we use memory (not DB) to store data
 ```mermaid
 erDiagram
     direction LR
@@ -17,7 +17,7 @@ erDiagram
     }
     BILL {
         int id
-        string loan_id
+        int loan_id
         date due_date
         decimal amount
         enum status
@@ -55,5 +55,5 @@ Choose a menu by typing 0-5 then press Enter
 1. **get loans**: get existing loans (for now, only 1)
 2. **get bills**: get loan schedules for a loan
 3. **get outstanding**: get the total amount of unpaid bills
-4. **make payment**: pay on a specific date with exact amount based on total pending amount on that date
-5. **is delinquent**: input specific date, return true if there are at least 2 unpaid bills on that date, otherwise false
+4. **make payment**: pay on a specific date with exact amount based on total pending amount until that date
+5. **is delinquent**: input specific date, return true if there are at least 2 unpaid bills until that date, otherwise false
